@@ -2,15 +2,31 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    // 在这里定义你的状态
+    users: [{
+      name:'tangyusen',
+      password:'202250915129'
+    }],
   },
   mutations: {
-    // 在这里定义你的 mutation
+    ADD_USER(state, user) {
+      state.users.push(user);
+    },
+    // ...
   },
   actions: {
-    // 在这里定义你的 action
+    register({ commit }, user) {
+      // 在这里你可以添加检查用户名是否已存在的逻辑
+      const isUserExists = this.state.users.some(u => u.name === user.name)
+      if (isUserExists) {
+        return Promise.reject('用户已经存在咯~')
+      }
+      commit('ADD_USER', user)
+      return Promise.resolve()
+    },
+    // ...
   },
   modules: {
-    // 在这里定义你的模块
+    // ...
   }
 })
+

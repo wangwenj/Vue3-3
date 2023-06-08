@@ -14,7 +14,7 @@
               <el-form-item label="Password">
               <el-input type="password" show-password  v-model="password"/>
               </el-form-item>
-              <el-button @click="login">注册</el-button>
+              <el-button @click="register">注册</el-button>
               {{message}}
           </el-form>
       </el-col>
@@ -22,36 +22,43 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
-// 引入axios
-// import axios from 'axios'
-// 引入路由
-import router from '../router/index'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
 export default {
-  setup(){
-      const name = ref('tangyusen')
-      const password = ref('202250915129')
-      const message = ref('')
-      // 登录后就不让进入login界面 挂载生命周期
-      onMounted(()=>{
-          if(localStorage.getItem("message")==="ok"){
-              router.push({name:'main'})
-          }
-      })
-      const login = ()=>{
-          message.value = ""
-          if('tangyusen'===name.value&&'202250915129'===password.value){
-              localStorage.setItem("message","ok")
-              router.push({name:'main'})
-          }else{
-              message.value = "账号或密码错误"
-          }
-          
+  setup() {
+    const router = useRouter()
+    const store = useStore()
+    const name = ref('tangyusen')
+    const password = ref('202250915129')
+    const message = ref('')
+
+    onMounted(() => {
+      if (localStorage.getItem('message') === 'ok') {
+        router.push({ name: 'main' })
       }
-      return{
-          name,password,login,
-          message
-      }
+    })
+
+    const register = () => {
+      message.value = ''
+      store.dispatch('register', { name: name.value, password: password.value })
+        .then(() => {
+          localStorage.setItem('message', 'ok')
+          alert('注册成功')
+          router.push({ name: 'login' })
+        })
+        .catch(err => {
+          message.value = err
+        })
+    }
+
+    return {
+      name,
+      password,
+      register,
+      message
+    }
   }
 }
 </script>
