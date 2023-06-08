@@ -1,6 +1,7 @@
 
 
 import { createRouter, createWebHistory } from 'vue-router'
+import register from '../views/RegisterView'
 import login from '../views/LoginView'
 import main from '../views/MainView'
 import detail from '../views/DetailsView'
@@ -22,6 +23,14 @@ const routes = [
         meta: {
           req:false,
         }, 
+    },
+    {
+      path:'/register',
+      name:'register',
+      component:register,
+      meta: {
+        req:false,
+      }, 
     },
     {
       path:'/detail/:id',

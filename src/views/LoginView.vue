@@ -15,7 +15,7 @@
                 <el-input type="password" show-password  v-model="password"/>
                 </el-form-item>
                 <el-button @click="login">登录</el-button>
-                <el-button @click="register">注册</el-button>
+              <el-link :underline="false" @click="register" style="margin-left: 5px;">注册</el-link>
                 {{message}}
             </el-form>
         </el-col>
@@ -39,27 +39,8 @@ export default {
                 router.push({name:'main'})
             }
         })
-        // 登录  
-        // 把信息与数据对比 
-        // 正确进如主页面
         const login = ()=>{
             message.value = ""
-            // axios.request({
-            //     method:'get',
-            //     url:'http://localhost:8082/login/1',
-            //     data:{
-            //         name:name.value,
-            //         password:password.value
-            //     }
-            // }).then(function(res){
-            //     if(res.data.name===name.value&&res.data.password===password.value){
-            //         // 本地存储 是登录状态
-            //         localStorage.setItem("message","ok")
-            //         router.push({name:'main'})
-            //     }else{
-            //         message.value = "账号或密码错误"
-            //     }
-            // })
             if('tangyusen'===name.value&&'202250915129'===password.value){
                 localStorage.setItem("message","ok")
                 router.push({name:'main'})
@@ -68,9 +49,12 @@ export default {
             }
             
         }
+        const register = ()=>{
+            router.push('/register')
+        }
         return{
             name,password,login,
-            message
+            message,register
         }
     }
 }
