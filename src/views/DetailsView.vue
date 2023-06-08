@@ -1,13 +1,4 @@
-<!--
- * @Author: 米叔 849299509@qq.com
- * @Date: 2022-12-10 16:39:38
- * @LastEditors: 米叔 849299509@qq.com
- * @LastEditTime: 2022-12-10 18:01:15
- * @FilePath: \leaf\src\views\DetailsView.vue
- * @Description: 
- * 
- * Copyright (c) 2022 by 米叔 849299509@qq.com, All Rights Reserved. 
--->
+
 <template>
     <el-row class="row-bg" justify="space-evenly">
         <el-col :span="12">
@@ -63,20 +54,17 @@
 import router from '../router'
 import { useRoute } from 'vue-router';
 import { onMounted , ref} from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
     setup(){
         const route = new useRoute()
         const table = ref([])
+        const allData = localStorage.getItem('allData')
+
         onMounted(()=>{
-            axios.request({
-                url:`http://localhost:3000/leaf/${route.params.id}`,
-                method:'get',
-            }).then(function(res){
-                table.value = res.data
-            }).catch(function(){
-                router.push({name:'main'})
-            })
+            const test = JSON.parse(allData).find(item=>item.id==route.params.id)
+            console.log(test)
+            table.value  = test
         })
         const onBack = function(){
             router.push('/')

@@ -158,6 +158,7 @@
     <el-table-column prop="Telephone" label="电话" />
     <el-table-column prop="address" label="凋零地址" />
     <el-table-column prop="date" label="凋零日期" />
+    <el-table-column prop="motto" label="墓志铭" />
     <el-table-column label="Operations">
       <template #default="scope">
         <el-button size="small"  @click="handleEdit(scope.row)">Edit</el-button>
@@ -184,7 +185,15 @@ import router from '../router/index'
 export default {
   setup(){
     const vue = reactive({
-        tableData:[],
+        tableData:[{
+          id:'1',
+          name:'黄桷树',
+            Telephone: '12345678911',
+            date: '2023-01-01',
+            address: '郑州',
+            motto:'一个墓志铭',
+            friends:[]
+        }],
         copyTable:[],
         // 数据总数
         totle:0,
@@ -209,14 +218,9 @@ export default {
     }
     // 获取所有的数据
     const aaa = ()=>{
-      axios.request({
-          method:'get',
-          url:'http://localhost:3000/leaf',
-      }).then(function(res){  
-          vue.totle = res.data.length
-          vue.tableData = res.data
+          vue.totle = vue.tableData.length
+          // vue.tableData = res.data
           fenye(vue.page)
-      })
     } 
     // 生命周期
     onMounted(()=>{
@@ -225,23 +229,19 @@ export default {
     // 增加数据
     const add = ()=>{
       console.log(vue.part)
-      axios.request({
-          method:'post',
-          url:'http://localhost:3000/leaf',
-          data:{
-            name:vue.part.name,
+      vue.tableData.push({
+              name:vue.part.name,
             Telephone: vue.part.Telephone,
             date: vue.part.date,
             address: vue.part.address,
             motto:vue.part.motto,
-            friends:vue.friends
-          }
-      }).then(function(){  
-        aaa()
-        alert("添加成功")
-        vue.part = [],
-        vue.friends = []
+            friends:vue.friends,
+            id:`${vue.tableData.length+1}`
       })
+      aaa()
+      alert("添加成功")
+      vue.part = [],
+      vue.friends = []
       vue.adddialogVisible = false
     }
     // 编辑数据  把数据放入模态框中
@@ -322,6 +322,7 @@ export default {
         vue.part = ''
     }
     const goDetail = (y)=>{
+      localStorage.setItem('allData',JSON.stringify(vue.tableData))
       router.push(`/detail/${y.id}`)
     }
     const loginOut = function(){

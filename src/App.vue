@@ -19,7 +19,7 @@
           </el-col>
           <el-col :span="2">
             <!-- 路由进入 -->
-            <router-link active-class="active" to="/">main</router-link> 
+            <router-link active-class="active" to="/">首页</router-link> 
           </el-col>
           <el-col  :span="2">
             <!-- 路由进入 -->
