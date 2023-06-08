@@ -1,14 +1,3 @@
-<!--
- * @Author: 米叔 849299509@qq.com
- * @Date: 2022-12-09 10:21:55
- * @LastEditors: 米叔 849299509@qq.com
- * @LastEditTime: 2022-12-11 16:08:28
- * @FilePath: \leaf\src\views\MainView.vue
- * @Description: 
- * 
- * Copyright (c) 2022 by 米叔 849299509@qq.com, All Rights Reserved. 
--->
-
 <template>
   <!-- 修改 -->
   <el-dialog
