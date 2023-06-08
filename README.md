@@ -1,13 +1,4 @@
-<!--
- * @Author: 米叔 849299509@qq.com
- * @Date: 2022-12-09 08:36:32
- * @LastEditors: 米叔 849299509@qq.com
- * @LastEditTime: 2022-12-10 18:33:21
- * @FilePath: \leaf\README.md
- * @Description: 
- * 
- * Copyright (c) 2022 by 米叔 849299509@qq.com, All Rights Reserved. 
--->
+
 ```
 安装 json-server
 npm i  json-server -g
@@ -19,7 +10,6 @@ npm install element-plus --save
 mpm i
 
 
-登录账号密码 都是 admin
 ```
 # 图片展示
  ###  主页面

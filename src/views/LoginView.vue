@@ -15,6 +15,7 @@
                 <el-input type="password" show-password  v-model="password"/>
                 </el-form-item>
                 <el-button @click="login">登录</el-button>
+                <el-button @click="register">注册</el-button>
                 {{message}}
             </el-form>
         </el-col>
